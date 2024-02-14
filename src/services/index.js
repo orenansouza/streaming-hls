@@ -1,3 +1,4 @@
 module.exports = {
-  StreamService: require('./stream')
+  StreamService: require('./stream'),
+  MinioService: require('./minio')
 }
