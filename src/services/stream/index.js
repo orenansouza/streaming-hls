@@ -1,28 +1,28 @@
-const Hls = require('hls-server');
+// const MinioService = require('../minIO');
 
 class StreamService {
-  constructor(server) {
-    const config = {
-      path: './streams',
-      dir: 'public/videos'
-    }
-    this.hls = new Hls(server, config);
-
-    this.clients = 0;
-    // TODO change Hls.Events.MEDIA_ATTACHED to media_file
-    this.hls.on(Hls.Events.MEDIA_ATTACHED, () => {
-      this.clients++;
-      console.log(`Connected client. Total customers: ${this.clients}`);
-    });
-
-    this.hls.on(Hls.Events.MEDIA_DETACHED, () => {
-      this.clients--;
-      console.log(`Client disconnected. Total customers: ${this.clients}`);
-    });
+  constructor() {
+    // this.minioClient = new MinioService();
   }
 
-  attach(server, path) {
-    this.hls.attach(server, path);
+  async getStreaming(url) {
+
+    return { success: true }
+    // const objectName = this.extractObjectName(url);
+    // try {
+    //   const stream = await this.minioClient.listBuckets('bucket_name', objectName);
+    //   return stream;
+    // } catch (error) {
+    //   console.error('Error retrieving HLS stream from MinIO:', error);
+    //   throw new Error('Internal Server Error');
+    // }
+  }
+
+  extractObjectName(url) {
+    // Implemente a lógica para extrair o nome do objeto/caminho do arquivo HLS da URL
+    // Exemplo:
+    // const objectName = ...;
+    // return objectName;
   }
 }
 

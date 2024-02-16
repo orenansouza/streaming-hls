@@ -1,16 +1,9 @@
-const StreamController = require('../controllers');
+const express = require('express')
 
-function setupRoutes(server, streamService) {
-  const streamController = new StreamController(streamService);
+const streamingRoutes = require('./stream')
 
-  server.on('request', (req, res) => {
-    if (req.url === '/') {
-      return streamController.index(req, res);
-    }
+const routes = express.Router()
 
-    res.writeHead(404);
-    res.end('Not Found');
-  });
-}
+routes.use('/streaming', streamingRoutes)
 
-module.exports = setupRoutes;
+module.exports = routes;

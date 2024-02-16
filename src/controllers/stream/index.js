@@ -1,12 +1,28 @@
-class StreamController {
-  constructor(streamService) {
-    this.streamService = streamService;
+const { StreamService } = require('../../services');
+
+class StreamingController {
+  #streamService
+  constructor() {
+    this.#streamService = new StreamService();
   }
 
-  index(req, res) {
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.end('HLS streaming server running');
+  async getStreaming(req, res) {
+    // const { url } = req.query;
+    console.log('aqui')
+    // try {
+    //   const stream = await this.#streamService.getStreaming(url);
+
+    //   res.set({
+    //     'Content-Type': 'application/x-mpegURL',
+    //     'Transfer-Encoding': 'chunked'
+    //   });
+
+    //   stream.pipe(res);
+    // } catch (error) {
+    //   console.error('Error in streaming controller:', error);
+    //   res.status(500).send('Internal Server Error');
+    // }
   }
 }
 
-module.exports = StreamController;
+module.exports = StreamingController;
